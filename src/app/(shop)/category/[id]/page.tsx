@@ -1,8 +1,13 @@
+import { initialData } from '@/seed/seed';
 import { notFound } from 'next/navigation';
+import { Product, Category } from '@/interfaces/product.interface';
+import { ProductGrid, Title } from '@/components';
+
+const seedProducts = initialData.products;
 
 interface Props {
   params: {
-    id: string;
+    id: Category;
   }
 }
 
@@ -10,15 +15,32 @@ interface Props {
 export default function CategoryPage({ params }: Props) {
 
   const { id } = params;
+  const products = seedProducts.filter( product => product.gender === id );
 
-  if ( id === "kids" ) {
-    notFound();
+  const labels: Record<Category, string> = {
+    'men': 'para hombres',
+    'women': 'para mujeres',
+    'kid': 'para ninos',
+    'unisex': 'para todos'
   }
+
+  // if ( id === "kids" ) {
+  //   notFound();
+  // }
 
 
   return (
-    <div>
-      <h1>Category Page { id }</h1>
-    </div>
+    <>
+      <Title
+        title={`Articulos de ${ labels[id] }`}
+        subtitle="Todos los productos"
+        className="mb-2"
+      /> 
+
+      <ProductGrid
+        products={ products }
+      />
+      
+    </>
   );
 }
