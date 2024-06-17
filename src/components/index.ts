@@ -6,6 +6,8 @@ export * from "./products/product-grid/ProductGrid";
 export * from "./products/product-grid/ProductGridItem";
 
 
+export * from "./ui/footer/Footer";
+
 export * from "./product/slideshow/ProductSlideshow";
 export * from "./product/slideshow/ProductMobileSlideshow";
 
